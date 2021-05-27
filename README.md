@@ -1,3 +1,3 @@
 # getMenu
 
-Is an app for getting menus from pubs using web scraping.
+Is an app for getting menus from pubs in Brno using web scraping.
