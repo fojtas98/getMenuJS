@@ -1,0 +1,23 @@
+{
+  "name": "getmenu",
+  "version": "1.0.0",
+  "description": "Is an app for getting menus from pubs in Brno using web scraping.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fojtas98/getMenu.git"
+  },
+  "author": "Jan Fojtik",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fojtas98/getMenu/issues"
+  },
+  "homepage": "https://github.com/fojtas98/getMenu#readme",
+  "dependencies": {
+    "html-to-json": "^0.6.0",
+    "puppeteer": "^9.1.1"
+  }
+}
