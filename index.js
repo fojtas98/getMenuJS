@@ -1,11 +1,12 @@
 const puppeteer = require("puppeteer");
 const uCapa = require("./uCapa");
+const veroniCaffee = require("./veroniCaffee");
 
 const getMenu = async () => {
   const browser = await puppeteer.launch();
-  const page = await browser.newPage();
   const today = new Date().getUTCDay();
-  uCapa(page, today);
+  await Promise.all([uCapa(browser, today), veroniCaffee(browser)]);
+  browser.close();
 };
 
 getMenu();
