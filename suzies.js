@@ -7,6 +7,7 @@ module.exports = async (browser, today) => {
     );
     return;
   }
+  console.log("connecting to suzies");
   const page = await getPage(browser, "http://www.suzies.cz/poledni-menu.html");
   const res = await page.evaluate((today) => {
     const day = Array.from(document.querySelectorAll(".day"));
