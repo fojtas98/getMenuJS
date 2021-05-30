@@ -1,3 +1,5 @@
+const { getPage } = require("./helpers");
+
 module.exports = async (browser, today) => {
   if (today < 1 || today > 5) {
     console.log(
@@ -6,8 +8,10 @@ module.exports = async (browser, today) => {
     return;
   }
   console.log("connecting to U capa");
-  const page = await browser.newPage();
-  await page.goto("https://www.pivnice-ucapa.cz/denni-menu.php");
+  const page = await getPage(
+    browser,
+    "https://www.pivnice-ucapa.cz/denni-menu.php"
+  );
   const res = await page.evaluate((today) => {
     const day = Array.from(document.querySelectorAll(".cont"));
     const foodArray = Array.from(

@@ -1,3 +1,5 @@
+const { getPage } = require("./helpers");
+
 module.exports = async (browser, today) => {
   if (today < 1 || today > 5) {
     console.log(
@@ -5,8 +7,7 @@ module.exports = async (browser, today) => {
     );
     return;
   }
-  const page = await browser.newPage();
-  await page.goto("http://www.suzies.cz/poledni-menu.html");
+  const page = await getPage(browser, "http://www.suzies.cz/poledni-menu.html");
   const res = await page.evaluate((today) => {
     const day = Array.from(document.querySelectorAll(".day"));
     const foodArray = Array.from(day[today - 1].querySelectorAll(".item"));
