@@ -5,6 +5,7 @@ module.exports = async (browser) => {
     .goto("https://www.menicka.cz/4921-veroni-coffee--chocolate.html")
     .catch((err) => {
       console.log("nepodarilo se pripojit na menicka.cz");
+      return;
     });
   const res = await page.evaluate(() => {
     const menu = document.querySelectorAll(".menicka");
@@ -14,7 +15,5 @@ module.exports = async (browser) => {
     return todayMenu.map((food) => food.textContent.replaceAll(/\n/g, ""));
   });
   console.log("\n\nMenu Veroni Caffee");
-  res.forEach((food) => {
-    console.log(food.replace("   ", ""));
-  });
+  res.forEach((food) => console.log(food.replace("   ", "")));
 };
