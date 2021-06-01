@@ -10,16 +10,14 @@ module.exports = async (today) => {
     return;
   }
   const week = [];
-  await fetch("https://www.pivnice-ucapa.cz/denni-menu.php")
-    .then((res) => res.text())
-    .then((text) => {
-      const $ = cheerio.load(text);
-      $(".cont").each((i, el) => {
-        const day = $(el).text();
-        week.push(day);
-      });
-    });
-
+  const html = await fetch("https://www.pivnice-ucapa.cz/denni-menu.php").then(
+    (res) => res.text()
+  );
+  const $ = cheerio.load(html);
+  $(".cont").each((i, el) => {
+    const day = $(el).text();
+    week.push(day);
+  });
   console.log(
     "\nMenu pivnice U capa\n" + week[today - 1].replace(/\s\s+/g, "\n")
   );

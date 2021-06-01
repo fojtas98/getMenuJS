@@ -12,5 +12,4 @@ const getMenu = async () => {
     }
   );
 };
-
 getMenu();

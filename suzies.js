@@ -9,15 +9,16 @@ module.exports = async (today) => {
     return;
   }
   const week = [];
-  await fetch("http://www.suzies.cz/poledni-menu.html")
-    .then((res) => res.text())
-    .then((text) => {
-      const $ = cheerio.load(text);
-      $(".day").each((i, el) => {
-        const day = $(el).text();
-        week.push(day);
-      });
-    });
+  const html = await fetch("http://www.suzies.cz/poledni-menu.html").then(
+    (res) => res.text()
+  );
+
+  const $ = cheerio.load(html);
+  $(".day").each((i, el) => {
+    const day = $(el).text();
+    week.push(day);
+  });
+
   console.log(
     "\nMenu Suzie's Steakhouse Brno\n" + week[today - 1].replace(/\s\s+/g, "\n")
   );
