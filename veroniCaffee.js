@@ -1,18 +1,16 @@
-const { getPage } = require("./helpers");
+const fetch = require("node-fetch");
+const cheerio = require("cheerio");
 
-module.exports = async (browser) => {
-  console.log("connecting to VeroniCaffee");
-  const page = await getPage(
-    browser,
+module.exports = async () => {
+  const html = await fetch(
     "https://www.menicka.cz/4921-veroni-coffee--chocolate.html"
-  );
-  const res = await page.evaluate(() => {
-    const menu = document.querySelectorAll(".menicka");
-    const todayMenu = Array.from(
-      Array.from(menu)[0].querySelectorAll(".jidlo ,.polevka")
-    );
-    return todayMenu.map((food) => food.textContent.replaceAll(/\n/g, ""));
+  ).then((res) => res.textConverted());
+  const week = [];
+  const $ = cheerio.load(html);
+  $(".menicka").each((i, el) => {
+    const day = $(el).text();
+    week.push(day);
   });
-  console.log("\n\nMenu Veroni Caffee");
-  res.forEach((food) => console.log(food.replace("   ", "")));
+
+  console.log("\nMenu Veroni Caffee\n" + week[0].replace(/\s\s+/g, "\n"));
 };
